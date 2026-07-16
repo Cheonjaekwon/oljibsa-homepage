@@ -16,9 +16,12 @@
   legend{font-size:15px;font-weight:700;color:var(--green-dark);padding:0 4px;}
   label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;}
   label.req::after{content:" *";color:#c0392b;}
+  label.opt{color:var(--muted);font-weight:500;}
+  label.opt::after{content:" (선택)";font-weight:400;color:var(--muted);}
   input[type=text],input[type=tel],input[type=email],input[type=date],textarea,select{
     width:100%;padding:11px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;
   }
+  input:disabled{background:#f0f0f0;color:#999;}
   textarea{min-height:80px;resize:vertical;}
   .radio-row,.check-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px;}
   .radio-row label,.check-row label{display:flex;align-items:center;gap:6px;font-weight:400;margin:0;font-size:13px;}
@@ -27,8 +30,8 @@
   .photo-item .desc{font-size:12px;color:var(--muted);margin-bottom:8px;}
   .photo-item input[type=file]{width:100%;font-size:12px;}
   .thumb{margin-top:8px;max-width:100%;max-height:120px;border-radius:6px;display:none;}
-  .consent{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);margin-top:10px;}
-  .consent input{margin-top:3px;}
+  .date-alt{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:400;margin-top:8px;}
+  .notice{font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px;padding-top:10px;border-top:1px solid #eee;}
   .submit-btn{width:100%;padding:16px;background:var(--green-dark);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;margin-top:8px;cursor:pointer;}
   .submit-btn:disabled{opacity:.5;cursor:not-allowed;}
   .status-msg{text-align:center;font-size:13px;margin-top:12px;color:var(--muted);}
@@ -40,7 +43,7 @@
 <div class="wrap">
   <a class="back" href="index.html">&larr; 올집사 홈으로</a>
   <h1>사진으로 먼저 상담하기</h1>
-  <p class="sub">현장 사진과 요청사항을 남겨주시면 확인 후 이메일로 견적을 안내드립니다.</p>
+  <p class="sub">이름과 전화번호만 남겨주셔도 됩니다. 나머지는 아는 만큼만 적어주세요.</p>
 
   <form id="inquiryForm">
     <fieldset>
@@ -51,15 +54,15 @@
       <label class="req">전화번호</label>
       <input type="tel" name="phone" placeholder="010-0000-0000" required>
 
-      <label class="req">이메일</label>
-      <input type="email" name="email" required>
+      <label class="opt">이메일</label>
+      <input type="email" name="email" placeholder="없으면 비워두셔도 됩니다">
 
-      <label class="req">현장 주소</label>
-      <input type="text" name="address" placeholder="양평군 OO면 OO리" required>
+      <label class="opt">현장 주소</label>
+      <input type="text" name="address" placeholder="양평군 OO면 OO리">
 
-      <label class="req">건물 구분</label>
+      <label class="opt">건물 구분</label>
       <div class="radio-row">
-        <label><input type="radio" name="propertyType" value="전원주택" required> 전원주택</label>
+        <label><input type="radio" name="propertyType" value="전원주택"> 전원주택</label>
         <label><input type="radio" name="propertyType" value="세컨하우스"> 세컨하우스</label>
         <label><input type="radio" name="propertyType" value="빈집"> 빈집</label>
       </div>
@@ -67,7 +70,7 @@
 
     <fieldset>
       <legend>요청 내용</legend>
-      <label class="req">원하는 작업</label>
+      <label class="opt">원하는 작업</label>
       <div class="check-row">
         <label><input type="checkbox" name="workType" value="잔디깎기"> 잔디깎기</label>
         <label><input type="checkbox" name="workType" value="가지치기/전정"> 가지치기/전정</label>
@@ -77,15 +80,19 @@
         <label><input type="checkbox" name="workType" value="기타"> 기타</label>
       </div>
 
-      <label class="req">상세 요청사항</label>
-      <textarea name="details" placeholder="예: 마당 전체 잔디가 많이 자랐고, 진입로 쪽 가지치기도 필요합니다." required></textarea>
+      <label class="opt">상세 요청사항</label>
+      <textarea name="details" placeholder="예: 마당 전체 잔디가 많이 자랐고, 진입로 쪽 가지치기도 필요합니다."></textarea>
 
-      <label class="req">희망 날짜</label>
-      <input type="date" name="preferredDate" required>
+      <label class="opt">희망 날짜</label>
+      <input type="date" name="preferredDate" id="preferredDate">
+      <div class="date-alt">
+        <input type="checkbox" id="dateLater" name="dateLater">
+        <label for="dateLater" style="margin:0;font-weight:400;">날짜는 상담 후 정할게요</label>
+      </div>
 
-      <label class="req">출입 가능 여부</label>
+      <label class="opt">출입 가능 여부</label>
       <div class="radio-row">
-        <label><input type="radio" name="access" value="상시 출입 가능" required> 상시 출입 가능</label>
+        <label><input type="radio" name="access" value="상시 출입 가능"> 상시 출입 가능</label>
         <label><input type="radio" name="access" value="사전 연락 필요"> 사전 연락 필요</label>
         <label><input type="radio" name="access" value="방문 시 동행"> 방문 시 동행</label>
       </div>
@@ -93,7 +100,7 @@
 
     <fieldset>
       <legend>현장 사진</legend>
-      <p class="desc" style="font-size:12px;color:var(--muted);">최소 1장 이상 첨부해주시면 견적이 더 정확해집니다.</p>
+      <p class="desc" style="font-size:12px;color:var(--muted);">최소 1장 이상 첨부해주시면 견적이 더 정확해집니다. (이것도 필수는 아니에요)</p>
 
       <div class="photo-item">
         <div class="name">전체 정면</div>
@@ -127,14 +134,8 @@
       </div>
     </fieldset>
 
-    <fieldset>
-      <label class="consent">
-        <input type="checkbox" name="consent" required>
-        <span>개인정보(이름, 연락처, 주소, 사진)를 상담 및 견적 목적으로 수집하는 데 동의합니다. 수집된 정보는 상담 완료 후 관련 법령에 따라 보관/파기됩니다.</span>
-      </label>
-    </fieldset>
-
     <button class="submit-btn" type="submit" id="submitBtn">사진 보내고 상담 신청</button>
+    <p class="notice">이름, 연락처, 주소, 사진은 상담과 견적 목적으로만 사용되며 상담 완료 후 관련 법령에 따라 보관·파기됩니다. 신청 시 이 내용에 동의한 것으로 처리됩니다.</p>
     <div class="status-msg" id="statusMsg"></div>
   </form>
 </div>
@@ -149,6 +150,21 @@ const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzZ85rG3Kb-Cj_m
 const form = document.getElementById('inquiryForm');
 const submitBtn = document.getElementById('submitBtn');
 const statusMsg = document.getElementById('statusMsg');
+const dateInput = document.getElementById('preferredDate');
+const dateLater = document.getElementById('dateLater');
+
+// 오늘 이전 날짜는 선택 못하게 막기
+dateInput.min = new Date().toISOString().split('T')[0];
+
+// "날짜는 상담 후 정할게요" 체크 시 날짜 입력 비활성화
+dateLater.addEventListener('change', () => {
+  if (dateLater.checked) {
+    dateInput.value = '';
+    dateInput.disabled = true;
+  } else {
+    dateInput.disabled = false;
+  }
+});
 
 // 사진 미리보기 + 리사이즈용 캐시
 const photoCache = {}; // key -> {filename, mimeType, base64}
@@ -217,14 +233,14 @@ form.addEventListener('submit', async (e) => {
   const payload = {
     name: fd.get('name'),
     phone: fd.get('phone'),
-    email: fd.get('email'),
-    address: fd.get('address'),
-    propertyType: fd.get('propertyType'),
+    email: fd.get('email') || '',
+    address: fd.get('address') || '',
+    propertyType: fd.get('propertyType') || '',
     workType: workTypes.join(', '),
-    details: fd.get('details'),
-    preferredDate: fd.get('preferredDate'),
-    access: fd.get('access'),
-    consent: !!fd.get('consent'),
+    details: fd.get('details') || '',
+    preferredDate: dateLater.checked ? '상담 후 결정' : (fd.get('preferredDate') || '미정'),
+    access: fd.get('access') || '',
+    consent: true,
     photos: photoCache,
     submittedAt: new Date().toISOString()
   };
