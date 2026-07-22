@@ -4,253 +4,337 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>사진 보내고 견적받기 | 올집사</title>
+  <meta name="description" content="현장 사진과 기본 정보를 보내주시면 올집사가 작업비와 출장비를 확인해 견적을 안내합니다.">
   <meta name="theme-color" content="#275f2b">
   <link rel="canonical" href="https://oljibsa.co.kr/contact.html">
 
   <style>
-    :root{
-      --g:#275f2b;
-      --cream:#f7f4ec;
-      --line:#dedbd2;
-      --text:#20251f;
-      --muted:#6b7168
+    :root {
+      --green: #275f2b;
+      --green-dark: #204f27;
+      --green-light: #3f793f;
+      --cream: #f7f4ec;
+      --line: #dedbd2;
+      --text: #20251f;
+      --muted: #6b7168;
+      --danger: #a12e27;
     }
 
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;
-      color:var(--text);
-      background:#f8f7f2;
-      line-height:1.6;
-      word-break:keep-all
+    * {
+      box-sizing: border-box;
     }
 
-    .wrap{
-      width:min(850px,calc(100% - 28px));
-      margin:auto
+    html {
+      -webkit-text-size-adjust: 100%;
     }
 
-    .top{
-      background:#fff;
-      border-bottom:1px solid #eee
+    body {
+      margin: 0;
+      font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo",
+        "Malgun Gothic", Arial, sans-serif;
+      color: var(--text);
+      background: #f8f7f2;
+      line-height: 1.6;
+      word-break: keep-all;
     }
 
-    .bar{
-      height:68px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between
+    .wrap {
+      width: min(850px, calc(100% - 28px));
+      margin: auto;
     }
 
-    .brand{
-      font-size:26px;
-      font-weight:900;
-      color:var(--g);
-      text-decoration:none
+    .top {
+      background: #fff;
+      border-bottom: 1px solid #eee;
     }
 
-    .back{
-      color:var(--g);
-      font-weight:800;
-      text-decoration:none
+    .bar {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .title{
-      background:linear-gradient(135deg,#204f27,#3f793f);
-      color:#fff;
-      padding:42px 0
+    .brand {
+      color: var(--green);
+      font-size: 26px;
+      font-weight: 900;
+      text-decoration: none;
     }
 
-    .title h1{
-      font-size:34px;
-      margin:0 0 7px
+    .back {
+      color: var(--green);
+      font-weight: 800;
+      text-decoration: none;
     }
 
-    .title p{
-      margin:0;
-      opacity:.85
+    .title {
+      padding: 42px 0;
+      color: #fff;
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green-light)
+      );
     }
 
-    .content{
-      padding:28px 0 70px
+    .title h1 {
+      margin: 0 0 7px;
+      font-size: 34px;
+      line-height: 1.3;
     }
 
-    .guide{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:24px;
-      margin-bottom:18px
+    .title p {
+      margin: 0;
+      opacity: 0.88;
     }
 
-    .guide h2{
-      margin-top:0;
-      font-size:21px
+    .content {
+      padding: 28px 0 70px;
     }
 
-    .photos{
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:8px
+    .guide,
+    .form {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
     }
 
-    .photo{
-      background:var(--cream);
-      border-radius:10px;
-      padding:13px 8px;
-      text-align:center;
-      font-size:12px
+    .guide {
+      padding: 24px;
+      margin-bottom: 18px;
     }
 
-    .photo b{
-      display:block;
-      color:var(--g);
-      font-size:20px
+    .guide h2 {
+      margin: 0 0 14px;
+      font-size: 21px;
     }
 
-    .form{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:28px
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px
+    .photo {
+      padding: 13px 8px;
+      text-align: center;
+      font-size: 12px;
+      background: var(--cream);
+      border-radius: 10px;
     }
 
-    .field{
-      margin-bottom:18px
+    .photo b {
+      display: block;
+      color: var(--green);
+      font-size: 20px;
     }
 
-    .full{
-      grid-column:1/-1
+    .form {
+      padding: 28px;
     }
 
-    label{
-      font-weight:800;
-      display:block;
-      margin-bottom:7px
+    .price {
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      background: var(--cream);
+      border-radius: 10px;
+    }
+
+    .price strong {
+      color: var(--green-dark);
+    }
+
+    .price small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+    }
+
+    .route-notice {
+      padding: 13px 15px;
+      margin: 0 0 20px;
+      color: #4f594f;
+      font-size: 13px;
+      background: #f3f6f1;
+      border-left: 4px solid var(--green);
+      border-radius: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 800;
     }
 
     label small,
-    .help{
-      font-weight:500;
-      color:var(--muted);
-      font-size:12px
+    .help {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
     }
 
     input,
     select,
-    textarea{
-      width:100%;
-      border:1px solid #cfcfc8;
-      border-radius:9px;
-      padding:13px;
-      font:inherit;
-      background:#fff
+    textarea {
+      width: 100%;
+      padding: 13px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid #cfcfc8;
+      border-radius: 9px;
     }
 
-    textarea{
-      min-height:115px;
-      resize:vertical
+    input:focus,
+    textarea:focus {
+      outline: 3px solid rgba(39, 95, 43, 0.13);
+      border-color: var(--green);
     }
 
-    .checks{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:8px
+    textarea {
+      min-height: 115px;
+      resize: vertical;
     }
 
-    .check{
-      display:flex;
-      align-items:center;
-      gap:7px;
-      border:1px solid var(--line);
-      border-radius:9px;
-      padding:11px;
-      font-weight:700
+    .checks {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
     }
 
-    .check input{
-      width:auto
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 58px;
+      padding: 11px;
+      margin: 0;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      cursor: pointer;
     }
 
-    .check small{
-      margin-left:auto;
-      color:var(--g);
-      font-weight:800;
-      font-size:12px;
-      text-align:right
+    .check:has(input:checked) {
+      background: #f3f7f1;
+      border-color: var(--green);
+      box-shadow: inset 0 0 0 1px var(--green);
     }
 
-    .privacy{
-      grid-column:1/-1;
-      background:#f3f6f1;
-      border-radius:10px;
-      padding:14px 16px;
-      color:#4f594f;
-      font-size:13px
+    .check input {
+      width: auto;
+      flex: 0 0 auto;
     }
 
-    .privacy b{
-      color:var(--g)
+    .check small {
+      margin-left: auto;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
     }
 
-    .submit{
-      border:0;
-      background:var(--g);
-      color:#fff;
-      width:100%;
-      padding:17px;
-      border-radius:10px;
-      font-size:17px;
-      font-weight:900;
-      cursor:pointer
+    .privacy {
+      grid-column: 1 / -1;
+      padding: 14px 16px;
+      color: #4f594f;
+      font-size: 13px;
+      background: #f3f6f1;
+      border-radius: 10px;
     }
 
-    .submit:disabled{
-      opacity:.6
+    .privacy b {
+      color: var(--green);
     }
 
-    .note{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:12px;
-      text-align:center
+    .error {
+      display: none;
+      padding: 12px;
+      margin-bottom: 16px;
+      color: var(--danger);
+      font-size: 14px;
+      background: #fff0ef;
+      border-radius: 9px;
     }
 
-    .price{
-      background:var(--cream);
-      padding:16px;
-      border-radius:10px;
-      font-size:14px;
-      margin-bottom:20px
+    .submit {
+      width: 100%;
+      padding: 17px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+      background: var(--green);
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
-    .error{
-      display:none;
-      background:#fff0ef;
-      color:#a12e27;
-      border-radius:9px;
-      padding:12px;
-      margin-bottom:16px;
-      font-size:14px
+    .submit:disabled {
+      opacity: 0.62;
+      cursor: wait;
     }
 
-    @media(max-width:650px){
-      .title{padding:30px 0}
-      .title h1{font-size:28px}
-      .photos{grid-template-columns:1fr 1fr}
-      .grid{grid-template-columns:1fr}
-      .full{grid-column:auto}
-      .checks{grid-template-columns:1fr}
-      .privacy{grid-column:auto}
-      .form{padding:20px}
+    .note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .title {
+        padding: 30px 0;
+      }
+
+      .title h1 {
+        font-size: 28px;
+      }
+
+      .photos {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full,
+      .privacy {
+        grid-column: auto;
+      }
+
+      .checks {
+        grid-template-columns: 1fr;
+      }
+
+      .form {
+        padding: 20px;
+      }
+
+      .bar {
+        min-height: 62px;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
     }
   </style>
 </head>
@@ -266,7 +350,7 @@
   <section class="title">
     <div class="wrap">
       <h1>사진 보내고 견적받기</h1>
-      <p>사진 3~5장과 기본 정보를 남겨주시면 확인 후 연락드립니다.</p>
+      <p>PC와 휴대폰 모두 같은 접수 시스템으로 처리됩니다.</p>
     </div>
   </section>
 
@@ -290,32 +374,68 @@
       method="POST"
       enctype="multipart/form-data"
     >
-      <input type="hidden" name="_subject" value="[올집사 홈페이지] 새 견적 요청">
+      <input
+        type="hidden"
+        name="_subject"
+        value="[올집사 홈페이지] 새 견적 요청"
+      >
+
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://oljibsa.co.kr/thanks.html">
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <input
+        type="hidden"
+        name="_next"
+        value="https://oljibsa.co.kr/thanks.html"
+      >
+
+      <input
+        type="hidden"
+        id="submissionKey"
+        name="접수고유번호"
+        value=""
+      >
+
+      <input
+        type="text"
+        name="_honey"
+        style="display:none"
+        tabindex="-1"
+        autocomplete="off"
+      >
 
       <div class="price">
-        <b>가격 안내 · 각 단계는 앞 단계 작업을 포함합니다.</b><br>
+        <strong>가격 안내 · 각 단계는 앞 단계 작업을 포함합니다.</strong><br>
         A 기본 잔디관리: 평당 1,000원(최소 작업금액 30,000원)<br>
         B 기본관리 + 제초관리: 평당 1,400원<br>
         C 기본관리 + 제초관리 + 생육관리: 평당 1,700원<br>
         D 기본관리 + 제초관리 + 생육관리 + 부분복토:
         평당 2,500원 + 마사토·복토재 실비<br>
-        기본 운임 20,000원(실제 주행거리 10km 포함) ·
-        10km 초과 시 km당 2,000원<br>
+        기본 출장비 20,000원(실제 자동차 경로 10km 포함) ·
+        10km 초과 시 km당 2,000원
+
         <small>
-          실제 길찾기 거리, 현장 난이도, 자재량을 확인한 뒤
-          승인 견적에서 조정됩니다.
+          사진과 현장 상태에 따라 관리자 승인 전 금액이 조정될 수 있습니다.
         </small>
       </div>
 
-      <div id="formError" class="error"></div>
+      <div class="route-notice">
+        주소가 지도에서 정확히 확인되지 않아도 작업비 견적은 계속
+        진행합니다. 이 경우 출장비는 견적에서 제외하고 정확한 주소 확인
+        후 별도로 안내·청구합니다.
+      </div>
+
+      <div
+        id="formError"
+        class="error"
+        role="alert"
+        aria-live="polite"
+      ></div>
 
       <div class="grid">
         <div class="field">
           <label for="name">이름 *</label>
+
           <input
             id="name"
             name="이름"
@@ -328,6 +448,7 @@
 
         <div class="field">
           <label for="phone">연락처 *</label>
+
           <input
             id="phone"
             name="연락처"
@@ -341,38 +462,53 @@
 
         <div class="field full">
           <label for="address">현장 주소 *</label>
+
           <input
             id="address"
             name="현장주소"
             required
             maxlength="120"
             autocomplete="street-address"
-            placeholder="양평군 ○○면 ○○리까지 적어주세요"
+            placeholder="정확하지 않으면 양평군 ○○면 ○○리까지 적어주세요"
           >
+
+          <div class="help">
+            상세주소가 확인되지 않아도 접수와 작업비 계산은 중단되지 않습니다.
+          </div>
         </div>
 
         <div class="field">
-          <label for="area">
-            대략적인 면적
-            <small>(모르면 비워도 됩니다)</small>
-          </label>
+          <label for="area">대략적인 면적(평) *</label>
 
           <input
             id="area"
             name="대략적인면적"
-            maxlength="30"
-            placeholder="예: 약 50평"
+            type="number"
+            min="1"
+            max="100000"
+            step="0.1"
+            required
+            inputmode="decimal"
+            placeholder="예: 50"
           >
+
+          <div class="help">
+            정확하지 않아도 예상 평수를 입력해 주세요.
+          </div>
         </div>
 
         <div class="field">
           <label for="date">희망 방문일</label>
+
           <input
             id="date"
             name="희망방문일"
             type="date"
           >
-          <div class="help">오늘 이후 날짜만 선택할 수 있습니다.</div>
+
+          <div class="help">
+            오늘 이후 날짜만 선택할 수 있습니다.
+          </div>
         </div>
 
         <div class="field full">
@@ -386,6 +522,7 @@
                 value="A 기본 잔디관리 | 평당 1,000원 | 최소 30,000원"
                 required
               >
+
               기본 잔디관리
               <small>평당 1,000원</small>
             </label>
@@ -396,6 +533,7 @@
                 name="원하는작업"
                 value="B 제초관리 | 기본 잔디관리 포함 | 평당 1,400원"
               >
+
               제초관리
               <small>평당 1,400원</small>
             </label>
@@ -406,6 +544,7 @@
                 name="원하는작업"
                 value="C 생육관리 | 기본관리·제초관리 포함 | 평당 1,700원"
               >
+
               생육관리
               <small>평당 1,700원</small>
             </label>
@@ -414,10 +553,11 @@
               <input
                 type="radio"
                 name="원하는작업"
-                value="D 부분복토 | 기본관리·제초관리·생육관리 포함 | 평당 2,500원 | 마사토 실비 별도"
+                value="D 부분복토 | 기본관리·제초관리·생육관리 포함 | 평당 2,500원 | 마사토·복토재 실비 별도"
               >
+
               부분복토
-              <small>평당 2,500원+마사토</small>
+              <small>평당 2,500원+자재</small>
             </label>
 
             <label class="check">
@@ -426,6 +566,7 @@
                 name="원하는작업"
                 value="사진 보고 추천 | 현장 상태 확인 후 관리 단계 추천"
               >
+
               사진 보고 추천
               <small>상태 확인 후 안내</small>
             </label>
@@ -461,113 +602,223 @@
 
         <div class="privacy">
           <b>개인정보 이용 안내</b><br>
-          견적 상담을 위해 입력하신 이름·연락처·주소·사진을
-          접수 확인과 상담에 필요한 기간 동안 이용합니다.
-          신청서를 보내면 위 내용에 동의한 것으로 처리됩니다.
+          견적 상담을 위해 입력하신 이름·연락처·주소·사진을 접수 확인과
+          상담에 필요한 기간 동안 이용합니다. 신청서를 보내면 위 내용에
+          동의한 것으로 처리됩니다.
         </div>
       </div>
 
-      <button id="submitBtn" class="submit" type="submit">
+      <button
+        id="submitBtn"
+        class="submit"
+        type="submit"
+      >
         사진과 견적 요청 보내기
       </button>
 
       <p class="note">
-        현재 전화 문의는 운영하지 않습니다.
-        접수 내용을 확인한 후 연락드립니다.<br>
-        사진으로 1차 견적을 안내하며
-        현장 상태에 따라 최종 금액이 조정될 수 있습니다.
+        접수 후 관리자 승인용 견적이 생성되며, 승인된 모바일 견적 링크로
+        안내드립니다.<br>
+        현장 상태와 실제 작업 범위에 따라 최종 금액이 조정될 수 있습니다.
       </p>
     </form>
   </main>
 
   <script>
     (function () {
-      const form = document.getElementById('estimateForm');
-      const dateInput = document.getElementById('date');
-      const err = document.getElementById('formError');
-      const submitBtn = document.getElementById('submitBtn');
-      const photos = document.getElementById('photos');
+      "use strict";
+
+      const form = document.getElementById("estimateForm");
+      const dateInput = document.getElementById("date");
+      const areaInput = document.getElementById("area");
+      const errorBox = document.getElementById("formError");
+      const submitBtn = document.getElementById("submitBtn");
+      const photos = document.getElementById("photos");
+      const submissionKeyInput =
+        document.getElementById("submissionKey");
 
       function localISO(date) {
-        return date.getFullYear()
-          + '-'
-          + String(date.getMonth() + 1).padStart(2, '0')
-          + '-'
-          + String(date.getDate()).padStart(2, '0');
+        return (
+          date.getFullYear() +
+          "-" +
+          String(date.getMonth() + 1).padStart(2, "0") +
+          "-" +
+          String(date.getDate()).padStart(2, "0")
+        );
       }
 
-      function setMinimum() {
+      function makeSubmissionKey() {
+        const now = new Date();
+
+        const stamp =
+          now.getFullYear() +
+          String(now.getMonth() + 1).padStart(2, "0") +
+          String(now.getDate()).padStart(2, "0") +
+          "-" +
+          String(now.getHours()).padStart(2, "0") +
+          String(now.getMinutes()).padStart(2, "0") +
+          String(now.getSeconds()).padStart(2, "0");
+
+        let randomPart = "";
+
+        if (
+          window.crypto &&
+          typeof window.crypto.randomUUID === "function"
+        ) {
+          randomPart = window.crypto
+            .randomUUID()
+            .replace(/-/g, "")
+            .slice(0, 12);
+        } else {
+          randomPart = Math.random()
+            .toString(36)
+            .slice(2, 14);
+        }
+
+        return "WEB-" + stamp + "-" + randomPart;
+      }
+
+      function ensureSubmissionKey() {
+        if (!submissionKeyInput.value) {
+          submissionKeyInput.value = makeSubmissionKey();
+        }
+      }
+
+      function setMinimumDate() {
         const today = localISO(new Date());
+
         dateInput.min = today;
 
-        if (dateInput.value && dateInput.value < today) {
-          dateInput.value = '';
+        if (
+          dateInput.value &&
+          dateInput.value < today
+        ) {
+          dateInput.value = "";
         }
 
         return today;
       }
 
-      let today = setMinimum();
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.style.display = "block";
 
-      window.addEventListener('pageshow', function () {
-        today = setMinimum();
-      });
+        errorBox.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
 
-      window.addEventListener('focus', function () {
-        today = setMinimum();
-      });
+      function clearError() {
+        errorBox.textContent = "";
+        errorBox.style.display = "none";
+      }
 
-      dateInput.addEventListener('change', function () {
-        today = setMinimum();
+      ensureSubmissionKey();
+      setMinimumDate();
 
-        if (dateInput.value && dateInput.value < today) {
-          dateInput.value = '';
-          err.textContent = '희망 방문일은 오늘 이후 날짜만 선택해 주세요.';
-          err.style.display = 'block';
-        } else {
-          err.style.display = 'none';
+      window.addEventListener(
+        "focus",
+        setMinimumDate
+      );
+
+      window.addEventListener(
+        "pageshow",
+        function () {
+          setMinimumDate();
+          submitBtn.disabled = false;
+          submitBtn.textContent =
+            "사진과 견적 요청 보내기";
         }
-      });
+      );
 
-      form.addEventListener('submit', function (event) {
-        today = setMinimum();
+      dateInput.addEventListener(
+        "change",
+        function () {
+          const today = setMinimumDate();
 
-        const services = document.querySelectorAll(
-          'input[name="원하는작업"]:checked'
-        );
-
-        const files = Array.from(photos.files);
-        let message = '';
-
-        if (dateInput.value && dateInput.value < today) {
-          message = '희망 방문일은 오늘 이후 날짜만 선택해 주세요.';
-        } else if (!services.length) {
-          message = '원하는 관리 단계를 한 가지 선택해 주세요.';
-        } else if (files.length < 1 || files.length > 10) {
-          message = '사진은 1장 이상, 최대 10장까지 첨부해 주세요.';
-        } else if (
-          files.reduce(function (sum, file) {
-            return sum + file.size;
-          }, 0) > 20 * 1024 * 1024
-        ) {
-          message = '첨부 사진 전체 용량은 20MB 이하로 줄여 주세요.';
+          if (
+            dateInput.value &&
+            dateInput.value < today
+          ) {
+            showError(
+              "희망 방문일은 오늘 이후 날짜만 선택해 주세요."
+            );
+          } else {
+            clearError();
+          }
         }
+      );
 
-        if (message) {
-          event.preventDefault();
-          err.textContent = message;
-          err.style.display = 'block';
-          err.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-          return;
+      form.addEventListener(
+        "submit",
+        function (event) {
+          ensureSubmissionKey();
+
+          const today = setMinimumDate();
+
+          const selectedService =
+            document.querySelector(
+              'input[name="원하는작업"]:checked'
+            );
+
+          const files = Array.from(
+            photos.files || []
+          );
+
+          const area = Number(areaInput.value);
+
+          const totalSize = files.reduce(
+            function (sum, file) {
+              return sum + file.size;
+            },
+            0
+          );
+
+          let message = "";
+
+          if (
+            dateInput.value &&
+            dateInput.value < today
+          ) {
+            message =
+              "희망 방문일은 오늘 이후 날짜만 선택해 주세요.";
+          } else if (
+            !Number.isFinite(area) ||
+            area <= 0
+          ) {
+            message =
+              "대략적인 면적을 평 단위 숫자로 입력해 주세요.";
+          } else if (!selectedService) {
+            message =
+              "원하는 관리 단계를 한 가지 선택해 주세요.";
+          } else if (
+            files.length < 1 ||
+            files.length > 10
+          ) {
+            message =
+              "사진은 1장 이상, 최대 10장까지 첨부해 주세요.";
+          } else if (
+            totalSize >
+            20 * 1024 * 1024
+          ) {
+            message =
+              "첨부 사진 전체 용량은 20MB 이하로 줄여 주세요.";
+          }
+
+          if (message) {
+            event.preventDefault();
+            showError(message);
+            return;
+          }
+
+          clearError();
+
+          submitBtn.disabled = true;
+          submitBtn.textContent =
+            "전송 중입니다…";
         }
-
-        err.style.display = 'none';
-        submitBtn.disabled = true;
-        submitBtn.textContent = '전송 중입니다…';
-      });
+      );
     })();
   </script>
 </body>
