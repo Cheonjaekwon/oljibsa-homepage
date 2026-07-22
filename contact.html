@@ -39,7 +39,7 @@
     }
 
     .wrap {
-      width: min(850px, calc(100% - 28px));
+      width: min(900px, calc(100% - 28px));
       margin: auto;
     }
 
@@ -87,7 +87,7 @@
 
     .title p {
       margin: 0;
-      opacity: 0.88;
+      opacity: .88;
     }
 
     .content {
@@ -135,22 +135,64 @@
       padding: 28px;
     }
 
-    .price {
-      padding: 16px;
-      margin-bottom: 20px;
-      font-size: 14px;
+    .price-guide {
+      padding: 18px;
+      margin-bottom: 18px;
       background: var(--cream);
+      border-radius: 12px;
+    }
+
+    .price-guide-title {
+      margin-bottom: 12px;
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .price-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .price-guide-item {
+      padding: 12px 13px;
+      background: #fff;
+      border: 1px solid #e4e0d7;
       border-radius: 10px;
     }
 
-    .price strong {
-      color: var(--green-dark);
+    .price-guide-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
     }
 
-    .price small {
-      display: block;
-      margin-top: 7px;
+    .price-guide-name {
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .price-guide-rate {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .price-guide-scope {
+      margin-top: 4px;
       color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .price-guide-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
     }
 
     .route-notice {
@@ -191,7 +233,6 @@
     }
 
     input,
-    select,
     textarea {
       width: 100%;
       padding: 13px;
@@ -204,7 +245,7 @@
 
     input:focus,
     textarea:focus {
-      outline: 3px solid rgba(39, 95, 43, 0.13);
+      outline: 3px solid rgba(39, 95, 43, .13);
       border-color: var(--green);
     }
 
@@ -215,21 +256,29 @@
 
     .checks {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .check {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 58px;
-      padding: 11px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 10px;
+      min-height: 104px;
+      padding: 14px;
       margin: 0;
-      font-weight: 700;
       border: 1px solid var(--line);
-      border-radius: 9px;
+      border-radius: 12px;
       cursor: pointer;
+      transition:
+        border-color .15s ease,
+        background .15s ease,
+        box-shadow .15s ease;
+    }
+
+    .check:hover {
+      border-color: #9ab69b;
     }
 
     .check:has(input:checked) {
@@ -239,16 +288,45 @@
     }
 
     .check input {
-      width: auto;
-      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin: 3px 0 0;
+      accent-color: var(--green);
     }
 
-    .check small {
-      margin-left: auto;
-      color: var(--green);
+    .service-copy {
+      min-width: 0;
+    }
+
+    .service-name {
+      display: block;
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .service-scope {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .service-price {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.4;
       text-align: right;
+      white-space: nowrap;
+    }
+
+    .recommend-card {
+      grid-column: 1 / -1;
+      min-height: 82px;
     }
 
     .privacy {
@@ -287,7 +365,7 @@
     }
 
     .submit:disabled {
-      opacity: 0.62;
+      opacity: .62;
       cursor: wait;
     }
 
@@ -307,21 +385,17 @@
         font-size: 28px;
       }
 
-      .photos {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .grid {
+      .photos,
+      .price-guide-grid,
+      .grid,
+      .checks {
         grid-template-columns: 1fr;
       }
 
       .full,
-      .privacy {
+      .privacy,
+      .recommend-card {
         grid-column: auto;
-      }
-
-      .checks {
-        grid-template-columns: 1fr;
       }
 
       .form {
@@ -334,6 +408,17 @@
 
       .brand {
         font-size: 23px;
+      }
+
+      .check {
+        min-height: 96px;
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .service-price {
+        grid-column: 2;
+        text-align: left;
+        white-space: normal;
       }
     }
   </style>
@@ -397,6 +482,12 @@
       >
 
       <input
+        type="hidden"
+        name="가격기준버전"
+        value="2026-07-22-A1000-B1400-C1700-D2500-MIN30000"
+      >
+
+      <input
         type="text"
         name="_honey"
         style="display:none"
@@ -404,25 +495,95 @@
         autocomplete="off"
       >
 
-      <div class="price">
-        <strong>가격 안내 · 각 단계는 앞 단계 작업을 포함합니다.</strong><br>
-        A 기본 잔디관리: 평당 1,000원(최소 작업금액 30,000원)<br>
-        B 기본관리 + 제초관리: 평당 1,400원<br>
-        C 기본관리 + 제초관리 + 생육관리: 평당 1,700원<br>
-        D 기본관리 + 제초관리 + 생육관리 + 부분복토:
-        평당 2,500원 + 마사토·복토재 실비<br>
-        기본 출장비 20,000원(실제 자동차 경로 10km 포함) ·
-        10km 초과 시 km당 2,000원
+      <section
+        class="price-guide"
+        aria-label="관리 단계별 가격과 포함 작업"
+      >
+        <div class="price-guide-title">
+          가격 안내 · 각 단계는 앞 단계 작업을 포함합니다.
+        </div>
 
-        <small>
-          사진과 현장 상태에 따라 관리자 승인 전 금액이 조정될 수 있습니다.
-        </small>
-      </div>
+        <div class="price-guide-grid">
+          <div class="price-guide-item">
+            <div class="price-guide-head">
+              <span class="price-guide-name">
+                A 기본 잔디관리
+              </span>
+
+              <span class="price-guide-rate">
+                평당 1,000원
+              </span>
+            </div>
+
+            <div class="price-guide-scope">
+              잔디깎기 + 가장자리 예초 + 작업 부산물 한곳 정리 ·
+              최소 작업금액 30,000원
+            </div>
+          </div>
+
+          <div class="price-guide-item">
+            <div class="price-guide-head">
+              <span class="price-guide-name">
+                B 제초관리
+              </span>
+
+              <span class="price-guide-rate">
+                평당 1,400원
+              </span>
+            </div>
+
+            <div class="price-guide-scope">
+              A 기본 잔디관리 + 필요한 구역의 선택 제초
+            </div>
+          </div>
+
+          <div class="price-guide-item">
+            <div class="price-guide-head">
+              <span class="price-guide-name">
+                C 생육관리
+              </span>
+
+              <span class="price-guide-rate">
+                평당 1,700원
+              </span>
+            </div>
+
+            <div class="price-guide-scope">
+              A 기본 잔디관리 + B 제초관리 + 잔디 비료 시비
+            </div>
+          </div>
+
+          <div class="price-guide-item">
+            <div class="price-guide-head">
+              <span class="price-guide-name">
+                D 부분복토
+              </span>
+
+              <span class="price-guide-rate">
+                평당 2,500원
+              </span>
+            </div>
+
+            <div class="price-guide-scope">
+              A+B+C 관리 + 꺼진 곳·맨땅 중심 부분복토 ·
+              마사토·복토재 실비 별도
+            </div>
+          </div>
+        </div>
+
+        <div class="price-guide-note">
+          기본 출장비 20,000원
+          (실제 자동차 경로 10km 포함) ·
+          10km 초과 시 km당 2,000원<br>
+          사진과 현장 상태에 따라 관리자 승인 전 금액이
+          조정될 수 있습니다.
+        </div>
+      </section>
 
       <div class="route-notice">
-        주소가 지도에서 정확히 확인되지 않아도 작업비 견적은 계속
-        진행합니다. 이 경우 출장비는 견적에서 제외하고 정확한 주소 확인
-        후 별도로 안내·청구합니다.
+        주소가 지도에서 정확히 확인되지 않아도 작업비 견적은
+        계속 진행합니다. 이 경우 출장비는 견적에서 제외하고
+        정확한 주소 확인 후 별도로 안내·청구합니다.
       </div>
 
       <div
@@ -473,7 +634,8 @@
           >
 
           <div class="help">
-            상세주소가 확인되지 않아도 접수와 작업비 계산은 중단되지 않습니다.
+            상세주소가 확인되지 않아도 접수와 작업비 계산은
+            중단되지 않습니다.
           </div>
         </div>
 
@@ -519,56 +681,118 @@
               <input
                 type="radio"
                 name="원하는작업"
-                value="A 기본 잔디관리 | 평당 1,000원 | 최소 30,000원"
+                value="A 기본 잔디관리 | 평당 1,000원 | 잔디깎기 + 가장자리 예초 + 작업 부산물 한곳 정리 | 최소 작업금액 30,000원"
                 required
               >
 
-              기본 잔디관리
-              <small>평당 1,000원</small>
+              <span class="service-copy">
+                <span class="service-name">
+                  기본 잔디관리
+                </span>
+
+                <span class="service-scope">
+                  잔디깎기 + 가장자리 예초 +
+                  작업 부산물 한곳 정리
+                </span>
+              </span>
+
+              <span class="service-price">
+                평당 1,000원<br>
+                최소 30,000원
+              </span>
             </label>
 
             <label class="check">
               <input
                 type="radio"
                 name="원하는작업"
-                value="B 제초관리 | 기본 잔디관리 포함 | 평당 1,400원"
+                value="B 제초관리 | 평당 1,400원 | A 기본 잔디관리 + 필요한 구역의 선택 제초"
               >
 
-              제초관리
-              <small>평당 1,400원</small>
+              <span class="service-copy">
+                <span class="service-name">
+                  제초관리
+                </span>
+
+                <span class="service-scope">
+                  A 기본 잔디관리 +
+                  필요한 구역의 선택 제초
+                </span>
+              </span>
+
+              <span class="service-price">
+                평당 1,400원
+              </span>
             </label>
 
             <label class="check">
               <input
                 type="radio"
                 name="원하는작업"
-                value="C 생육관리 | 기본관리·제초관리 포함 | 평당 1,700원"
+                value="C 생육관리 | 평당 1,700원 | A 기본 잔디관리 + B 제초관리 + 잔디 비료 시비"
               >
 
-              생육관리
-              <small>평당 1,700원</small>
+              <span class="service-copy">
+                <span class="service-name">
+                  생육관리
+                </span>
+
+                <span class="service-scope">
+                  A 기본 잔디관리 + B 제초관리 +
+                  잔디 비료 시비
+                </span>
+              </span>
+
+              <span class="service-price">
+                평당 1,700원
+              </span>
             </label>
 
             <label class="check">
               <input
                 type="radio"
                 name="원하는작업"
-                value="D 부분복토 | 기본관리·제초관리·생육관리 포함 | 평당 2,500원 | 마사토·복토재 실비 별도"
+                value="D 부분복토 | 평당 2,500원 | A+B+C 관리 + 꺼진 곳·맨땅 중심 부분복토 | 마사토·복토재 실비 별도"
               >
 
-              부분복토
-              <small>평당 2,500원+자재</small>
+              <span class="service-copy">
+                <span class="service-name">
+                  부분복토
+                </span>
+
+                <span class="service-scope">
+                  A+B+C 관리 + 꺼진 곳·맨땅 중심 부분복토 ·
+                  마사토·복토재 실비 별도
+                </span>
+              </span>
+
+              <span class="service-price">
+                평당 2,500원<br>
+                자재 실비 별도
+              </span>
             </label>
 
-            <label class="check">
+            <label class="check recommend-card">
               <input
                 type="radio"
                 name="원하는작업"
-                value="사진 보고 추천 | 현장 상태 확인 후 관리 단계 추천"
+                value="사진 보고 추천 | 현장 사진과 상태를 확인한 후 A/B/C/D 관리 단계 추천"
               >
 
-              사진 보고 추천
-              <small>상태 확인 후 안내</small>
+              <span class="service-copy">
+                <span class="service-name">
+                  사진 보고 추천
+                </span>
+
+                <span class="service-scope">
+                  선택이 어렵다면 사진과 현장 상태를 확인한 뒤
+                  적합한 관리 단계를 안내합니다.
+                </span>
+              </span>
+
+              <span class="service-price">
+                상태 확인 후 안내
+              </span>
             </label>
           </div>
         </div>
@@ -602,9 +826,9 @@
 
         <div class="privacy">
           <b>개인정보 이용 안내</b><br>
-          견적 상담을 위해 입력하신 이름·연락처·주소·사진을 접수 확인과
-          상담에 필요한 기간 동안 이용합니다. 신청서를 보내면 위 내용에
-          동의한 것으로 처리됩니다.
+          견적 상담을 위해 입력하신 이름·연락처·주소·사진을
+          접수 확인과 상담에 필요한 기간 동안 이용합니다.
+          신청서를 보내면 위 내용에 동의한 것으로 처리됩니다.
         </div>
       </div>
 
@@ -617,33 +841,46 @@
       </button>
 
       <p class="note">
-        접수 후 관리자 승인용 견적이 생성되며, 승인된 모바일 견적 링크로
-        안내드립니다.<br>
-        현장 상태와 실제 작업 범위에 따라 최종 금액이 조정될 수 있습니다.
+        접수 후 관리자 승인용 견적이 생성되며,
+        승인된 모바일 견적 링크로 안내드립니다.<br>
+        현장 상태와 실제 작업 범위에 따라
+        최종 금액이 조정될 수 있습니다.
       </p>
     </form>
   </main>
 
   <script>
     (function () {
-      "use strict";
+      'use strict';
 
-      const form = document.getElementById("estimateForm");
-      const dateInput = document.getElementById("date");
-      const areaInput = document.getElementById("area");
-      const errorBox = document.getElementById("formError");
-      const submitBtn = document.getElementById("submitBtn");
-      const photos = document.getElementById("photos");
+      const form =
+        document.getElementById('estimateForm');
+
+      const dateInput =
+        document.getElementById('date');
+
+      const areaInput =
+        document.getElementById('area');
+
+      const errorBox =
+        document.getElementById('formError');
+
+      const submitBtn =
+        document.getElementById('submitBtn');
+
+      const photos =
+        document.getElementById('photos');
+
       const submissionKeyInput =
-        document.getElementById("submissionKey");
+        document.getElementById('submissionKey');
 
       function localISO(date) {
         return (
           date.getFullYear() +
-          "-" +
-          String(date.getMonth() + 1).padStart(2, "0") +
-          "-" +
-          String(date.getDate()).padStart(2, "0")
+          '-' +
+          String(date.getMonth() + 1).padStart(2, '0') +
+          '-' +
+          String(date.getDate()).padStart(2, '0')
         );
       }
 
@@ -652,22 +889,22 @@
 
         const stamp =
           now.getFullYear() +
-          String(now.getMonth() + 1).padStart(2, "0") +
-          String(now.getDate()).padStart(2, "0") +
-          "-" +
-          String(now.getHours()).padStart(2, "0") +
-          String(now.getMinutes()).padStart(2, "0") +
-          String(now.getSeconds()).padStart(2, "0");
+          String(now.getMonth() + 1).padStart(2, '0') +
+          String(now.getDate()).padStart(2, '0') +
+          '-' +
+          String(now.getHours()).padStart(2, '0') +
+          String(now.getMinutes()).padStart(2, '0') +
+          String(now.getSeconds()).padStart(2, '0');
 
-        let randomPart = "";
+        let randomPart = '';
 
         if (
           window.crypto &&
-          typeof window.crypto.randomUUID === "function"
+          typeof window.crypto.randomUUID === 'function'
         ) {
           randomPart = window.crypto
             .randomUUID()
-            .replace(/-/g, "")
+            .replace(/-/g, '')
             .slice(0, 12);
         } else {
           randomPart = Math.random()
@@ -675,12 +912,13 @@
             .slice(2, 14);
         }
 
-        return "WEB-" + stamp + "-" + randomPart;
+        return 'WEB-' + stamp + '-' + randomPart;
       }
 
       function ensureSubmissionKey() {
         if (!submissionKeyInput.value) {
-          submissionKeyInput.value = makeSubmissionKey();
+          submissionKeyInput.value =
+            makeSubmissionKey();
         }
       }
 
@@ -693,7 +931,7 @@
           dateInput.value &&
           dateInput.value < today
         ) {
-          dateInput.value = "";
+          dateInput.value = '';
         }
 
         return today;
@@ -701,39 +939,40 @@
 
       function showError(message) {
         errorBox.textContent = message;
-        errorBox.style.display = "block";
+        errorBox.style.display = 'block';
 
         errorBox.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
+          behavior: 'smooth',
+          block: 'center'
         });
       }
 
       function clearError() {
-        errorBox.textContent = "";
-        errorBox.style.display = "none";
+        errorBox.textContent = '';
+        errorBox.style.display = 'none';
       }
 
       ensureSubmissionKey();
       setMinimumDate();
 
       window.addEventListener(
-        "focus",
+        'focus',
         setMinimumDate
       );
 
       window.addEventListener(
-        "pageshow",
+        'pageshow',
         function () {
           setMinimumDate();
+
           submitBtn.disabled = false;
           submitBtn.textContent =
-            "사진과 견적 요청 보내기";
+            '사진과 견적 요청 보내기';
         }
       );
 
       dateInput.addEventListener(
-        "change",
+        'change',
         function () {
           const today = setMinimumDate();
 
@@ -742,7 +981,7 @@
             dateInput.value < today
           ) {
             showError(
-              "희망 방문일은 오늘 이후 날짜만 선택해 주세요."
+              '희망 방문일은 오늘 이후 날짜만 선택해 주세요.'
             );
           } else {
             clearError();
@@ -751,7 +990,7 @@
       );
 
       form.addEventListener(
-        "submit",
+        'submit',
         function (event) {
           ensureSubmissionKey();
 
@@ -762,48 +1001,51 @@
               'input[name="원하는작업"]:checked'
             );
 
-          const files = Array.from(
-            photos.files || []
-          );
+          const files =
+            Array.from(photos.files || []);
 
-          const area = Number(areaInput.value);
+          const area =
+            Number(areaInput.value);
 
-          const totalSize = files.reduce(
-            function (sum, file) {
-              return sum + file.size;
-            },
-            0
-          );
+          const totalSize =
+            files.reduce(
+              function (sum, file) {
+                return sum + file.size;
+              },
+              0
+            );
 
-          let message = "";
+          let message = '';
 
           if (
             dateInput.value &&
             dateInput.value < today
           ) {
             message =
-              "희망 방문일은 오늘 이후 날짜만 선택해 주세요.";
+              '희망 방문일은 오늘 이후 날짜만 선택해 주세요.';
           } else if (
             !Number.isFinite(area) ||
             area <= 0
           ) {
             message =
-              "대략적인 면적을 평 단위 숫자로 입력해 주세요.";
-          } else if (!selectedService) {
+              '대략적인 면적을 평 단위 숫자로 입력해 주세요.';
+          } else if (
+            !selectedService
+          ) {
             message =
-              "원하는 관리 단계를 한 가지 선택해 주세요.";
+              '원하는 관리 단계를 한 가지 선택해 주세요.';
           } else if (
             files.length < 1 ||
             files.length > 10
           ) {
             message =
-              "사진은 1장 이상, 최대 10장까지 첨부해 주세요.";
+              '사진은 1장 이상, 최대 10장까지 첨부해 주세요.';
           } else if (
             totalSize >
             20 * 1024 * 1024
           ) {
             message =
-              "첨부 사진 전체 용량은 20MB 이하로 줄여 주세요.";
+              '첨부 사진 전체 용량은 20MB 이하로 줄여 주세요.';
           }
 
           if (message) {
@@ -816,7 +1058,7 @@
 
           submitBtn.disabled = true;
           submitBtn.textContent =
-            "전송 중입니다…";
+            '전송 중입니다…';
         }
       );
     })();
